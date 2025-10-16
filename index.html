@@ -35,17 +35,17 @@
     };
 
     const SCHEDULE = [
-      { start: "9:00",  end: "10:00", type: "talk60", title: "Opening Keynote (60 min)", speaker: "TBD", track: "Bandits/RL" },
-      { start: "10:00", end: "10:30", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Robust Stats" },
+      { start: "9:00",  end: "10:00", type: "talk60", title: "Opening Keynote (50 min)", speaker: "TBD", track: "Bandits/RL" },
+      { start: "10:00", end: "10:30", type: "talk30", title: "Contributed Talk (25 min)", speaker: "TBD", track: "Robust Stats" },
       { start: "10:30", end: "11:00", type: "break",  title: "Coffee Break", speaker: "—" },
-      { start: "11:00", end: "12:00", type: "talk60", title: "Invited Talk (60 min)", speaker: "TBD", track: "Bandits" },
+      { start: "11:00", end: "12:00", type: "talk60", title: "Invited Talk (50 min)", speaker: "TBD", track: "Bandits" },
       { start: "12:00", end: "13:30", type: "lunch",  title: "Lunch", speaker: "—" },
-      { start: "13:30", end: "14:30", type: "talk60", title: "Invited Talk (60 min)", speaker: "TBD", track: "RL" },
-      { start: "14:30", end: "15:00", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Robust Stats" },
-      { start: "15:00", end: "15:30", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Bandits" },
+      { start: "13:30", end: "14:30", type: "talk60", title: "Invited Talk (50 min)", speaker: "TBD", track: "RL" },
+      { start: "14:30", end: "15:00", type: "talk30", title: "Contributed Talk (25 min)", speaker: "TBD", track: "Robust Stats" },
+      { start: "15:00", end: "15:30", type: "talk30", title: "Contributed Talk (25 min)", speaker: "TBD", track: "Bandits" },
       { start: "15:30", end: "16:00", type: "break",  title: "Afternoon Break", speaker: "—" },
-      { start: "16:00", end: "17:00", type: "talk60", title: "Invited Talk (60 min)", speaker: "TBD", track: "Robust RL" },
-      { start: "17:00", end: "17:30", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Open Problems" },
+      { start: "16:00", end: "17:00", type: "talk60", title: "Invited Talk (50 min)", speaker: "TBD", track: "Robust RL" },
+      { start: "17:00", end: "17:30", type: "talk30", title: "Contributed Talk (25 min)", speaker: "TBD", track: "Open Problems" },
     ];
 
     const fmtRange = (s, e) => `${s}–${e}`;
@@ -78,8 +78,8 @@
                 <h3 className="text-base font-semibold">{item.title}</h3>
               </div>
               <div className="flex items-center gap-2">
-                {item.type === "talk60" && <Badge>60 min</Badge>}
-                {item.type === "talk30" && <Badge>30 min</Badge>}
+                {item.type === "talk60" && <Badge>50 min</Badge>}
+                {item.type === "talk30" && <Badge>25 min</Badge>}
                 {item.track && <Badge>{item.track}</Badge>}
               </div>
             </div>
