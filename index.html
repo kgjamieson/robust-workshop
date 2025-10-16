@@ -44,7 +44,7 @@
   { start: "14:30", end: "15:00", type: "talk30", title: "Contributed Talk (25 min)", speaker: "Ivan Lau"},
   { start: "15:00", end: "15:30", type: "talk30", title: "Contributed Talk (25 min)", speaker: "Alireza Bakhtiari"},
   { start: "15:30", end: "16:00", type: "break", title: "Afternoon Break -- Coffee and snacks", speaker: "—" },
-  { start: "16:00", end: "16:30", type: "talk60", title: "Invited Talk (25 min)", speaker: "Zaid Harchaoui"},
+  { start: "16:00", end: "16:30", type: "talk30", title: "Invited Talk (25 min)", speaker: "Zaid Harchaoui"},
   { start: "16:30", end: "17:00", type: "talk30", title: "Contributed Talk (25 min)", speaker: "Arnab Maiti"},
   { start: "17:00", end: "17:30", type: "talk30", title: "Contributed Talk (25 min)", speaker: "Artin Tajdini"},
   { start: "17:30", end: "18:00", type: "talk30", title: "Contributed Talk (25 min)", speaker: "Harin Lee"},
@@ -77,7 +77,7 @@
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div className="flex items-center gap-3">
                 <div className={`h-6 w-1.5 rounded ${colorBar}`} />
-                <h3 className="text-base font-semibold">{item.title}</h3>
+                <h3 className="text-base font-semibold">{item.speaker}</h3>
               </div>
               <div className="flex items-center gap-2">
                 {item.type === "talk60" && <Badge>50 min</Badge>}
@@ -85,9 +85,9 @@
                 {item.track && <Badge>{item.track}</Badge>}
               </div>
             </div>
-            {item.speaker && (
+            {item.title && (
               <p className="text-sm text-gray-700 mt-1">
-                <span className="font-medium">Speaker:</span> {item.speaker}
+                <span className="font-medium"></span> {item.title}
               </p>
             )}
           </div>
