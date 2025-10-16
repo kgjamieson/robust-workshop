@@ -1,0 +1,160 @@
+import React from 'react'
+
+// --- CONFIG ---
+const EVENT = {
+  title: "Robust Statistics, Multi‑Armed Bandits & Reinforcement Learning",
+  date: "Tuesday, October 21, 2025",
+  time: "9:00 AM – 5:30 PM PT",
+  location: "Gates Commons (CSE1 Room 691), Paul G. Allen Center, University of Washington",
+  shortLoc: "Gates Commons — CSE1 691"
+}
+
+// Helpful links (update as needed)
+const LINKS = {
+  map: "https://www.cs.washington.edu/academics/undergraduate/admissions/info-sessions/", // contains reference to CSE1 691 (Gates Commons)
+}
+
+// UW Brand colors (safe web approximations)
+const UW_COLORS = {
+  purple: "#39275B", // Primary Purple (Pantone 273)
+  gold: "#C79900",   // Gold accent
+}
+
+// Schedule blocks (edit speaker/title fields inline)
+const SCHEDULE = [
+  { start: "9:00", end: "10:00", type: "talk60", title: "Opening Keynote (60 min)", speaker: "TBD", track: "Bandits/RL" },
+  { start: "10:00", end: "10:30", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Robust Stats" },
+  { start: "10:30", end: "11:00", type: "break", title: "Coffee Break", speaker: "—" },
+  { start: "11:00", end: "12:00", type: "talk60", title: "Invited Talk (60 min)", speaker: "TBD", track: "Bandits" },
+  { start: "12:00", end: "13:30", type: "lunch", title: "Lunch", speaker: "—" },
+  { start: "13:30", end: "14:30", type: "talk60", title: "Invited Talk (60 min)", speaker: "TBD", track: "RL" },
+  { start: "14:30", end: "15:00", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Robust Stats" },
+  { start: "15:00", end: "15:30", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Bandits" },
+  { start: "15:30", end: "16:00", type: "break", title: "Afternoon Break", speaker: "—" },
+  { start: "16:00", end: "17:00", type: "talk60", title: "Invited Talk (60 min)", speaker: "TBD", track: "Robust RL" },
+  { start: "17:00", end: "17:30", type: "talk30", title: "Contributed Talk (30 min)", speaker: "TBD", track: "Open Problems" },
+]
+
+// Time utility
+function fmtRange(start, end) { return `${start}–${end}` }
+
+function Badge({ children }) {
+  return (
+    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium">
+      {children}
+    </span>
+  )
+}
+
+function Row({ item }) {
+  const base = "grid grid-cols-12 gap-3 items-start p-4 rounded-2xl border shadow-sm"
+  const colorBar = {
+    talk60: "bg-[var(--uw-gold)]",
+    talk30: "bg-[var(--uw-gold)]",
+    break: "bg-gray-300",
+    lunch: "bg-gray-300",
+  }[item.type]
+  return (
+    <div className={`${base} bg-white`}>
+      <div className="col-span-12 sm:col-span-2">
+        <div className="text-sm font-semibold tracking-wide" style={{color: UW_COLORS.purple}}>{fmtRange(item.start, item.end)}</div>
+      </div>
+      <div className="col-span-12 sm:col-span-10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div className="flex items-center gap-3">
+            <div className={`h-6 w-1.5 rounded ${colorBar}`} />
+            <h3 className="text-base font-semibold">{item.title}</h3>
+          </div>
+          <div className="flex items-center gap-2">
+            {item.type === 'talk60' && <Badge>60 min</Badge>}
+            {item.type === 'talk30' && <Badge>30 min</Badge>}
+            {item.track && <Badge>{item.track}</Badge>}
+          </div>
+        </div>
+        {item.speaker && <p className="text-sm text-gray-700 mt-1"><span className="font-medium">Speaker:</span> {item.speaker}</p>}
+      </div>
+    </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-gray-50" style={{
+      // Expose brand colors to CSS via custom props
+      ['--uw-purple' as any]: UW_COLORS.purple,
+      ['--uw-gold' as any]: UW_COLORS.gold,
+    }}>
+      {/* Header */}
+      <header className="relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{background: `linear-gradient(135deg, ${UW_COLORS.purple} 0%, ${UW_COLORS.gold} 100%)`}} />
+        <div className="max-w-5xl mx-auto px-6 py-8">
+          <div className="flex items-center justify-between gap-6">
+            {/* Logos */}
+            <div className="flex items-center gap-4">
+              {/* UW Block W (public SVG) */}
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Washington_Huskies_logo.svg"
+                alt="University of Washington Block W"
+                className="h-12 w-auto"
+              />
+              <div className="h-10 w-px bg-gray-300" />
+              {/* Allen School wordmark (text fallback) */}
+              <div className="text-sm leading-tight">
+                <div className="font-semibold" style={{color: UW_COLORS.purple}}>Paul G. Allen School</div>
+                <div className="text-gray-600">Computer Science & Engineering</div>
+              </div>
+            </div>
+            <a
+              href={LINKS.map}
+              className="text-sm font-medium underline hover:no-underline"
+            >Directions & info</a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="max-w-5xl mx-auto px-6">
+        <div className="mt-6 mb-8 bg-white border shadow-sm rounded-2xl p-6">
+          <p className="text-xs uppercase tracking-widest font-semibold" style={{color: UW_COLORS.purple}}>Workshop</p>
+          <h1 className="mt-2 text-2xl sm:text-3xl font-bold">{EVENT.title}</h1>
+          <p className="mt-2 text-gray-700">{EVENT.date} · {EVENT.time}</p>
+          <p className="text-gray-700">{EVENT.location}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Badge>Robust Statistics</Badge>
+            <Badge>Multi‑Armed Bandits</Badge>
+            <Badge>Reinforcement Learning</Badge>
+          </div>
+        </div>
+      </section>
+
+      {/* Schedule */}
+      <section className="max-w-5xl mx-auto px-6 pb-14">
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-xl font-semibold">Schedule</h2>
+          <p className="text-sm text-gray-600">Lunch 12:00–1:30 · 30‑min breaks at 10:30 & 3:30</p>
+        </div>
+        <div className="space-y-3">
+          {SCHEDULE.map((item, idx) => (<Row key={idx} item={item} />))}
+        </div>
+
+        {/* Notes / Contact */}
+        <div className="mt-8 text-sm text-gray-600">
+          <p><span className="font-medium">Venue:</span> {EVENT.shortLoc}. The space has flexible seating and A/V for hybrid sessions.</p>
+          <p className="mt-1">Questions or speaker updates: <a className="underline" href="mailto:organizer@cs.washington.edu">organizer@cs.washington.edu</a></p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t bg-white/60">
+        <div className="max-w-5xl mx-auto px-6 py-6 text-xs text-gray-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            © {new Date().getFullYear()} University of Washington · Paul G. Allen School of CSE
+          </div>
+          <div className="flex gap-2 items-center">
+            <span>Built with UW brand‑safe colors.</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
